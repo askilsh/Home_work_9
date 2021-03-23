@@ -61,8 +61,9 @@ public class MyCollection<E> implements Collection<E> {
 
     @Override
     public final boolean add(final E e) {
+        final float x = 1.5f;
         if (size == elementData.length) {
-            elementData = Arrays.copyOf(elementData, (int) (size * 1.5f));
+            elementData = Arrays.copyOf(elementData, (int) (size * x));
         }
         elementData[size++] = e;
         return true;
@@ -222,7 +223,8 @@ public class MyCollection<E> implements Collection<E> {
 
     @Override
     public final void clear() {
-        elementData = new Object[5];
+        final int x = 5;
+        elementData = new Object[x];
         size = 0;
     }
 
