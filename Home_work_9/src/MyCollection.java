@@ -9,15 +9,20 @@ public class MyCollection<E> implements Collection<E> {
 
     /*public static void main(final String[] argc) {
 
-        Integer[] nums = {null, 12, null, 6, 2, 1};
+        Integer[] nums = {0, 2, null, 5, 2};
 
         MyCollection<Integer> collection = new MyCollection<>(nums);
-        Iterator<Integer> it = collection.iterator();
+        Arrays.toString(collection.toArray(new Integer[5]));
+
+
+        //Iterator<Integer> it = collection.iterator();
         //collection.add(3);
-        System.out.println("src :");
+       /* System.out.println("src :");
+
         while (it.hasNext()) {
-            System.out.println(it.next());
+            System.out.print(it.next() + " ");
         }
+
         Integer[] ints = {null, 2, 6, 10};
         MyCollection<Integer> c = new MyCollection<>(ints);
         //System.out.println(collection.removeAll(c));
@@ -37,17 +42,15 @@ public class MyCollection<E> implements Collection<E> {
         //collection.clear();
         //collection.add(3);
         System.out.println("rez :");
-
         for (Object elem : collection.elementData) {
-            System.out.println(elem);
+            System.out.print(elem + " ");
         }
         //System.out.println(collection.contains(null));
     }*/
-
-    public MyCollection(final Object[] elementData) {
+    /*public MyCollection(final Object[] elementData) {
         this.elementData = elementData.clone();
         size = elementData.length;
-    }
+    }*/
 
     // Метод меняющий размер массива на число равное count. Для remove оказался ненужным (count > 0 не заходят).
     private void turnSize(final Object[] e, final int count) {
@@ -111,11 +114,10 @@ public class MyCollection<E> implements Collection<E> {
     public final <T> T[] toArray(final T[] a) {
         T[] puff = a;
         if (puff.length <= size) {
-            puff = (T[]) elementData;
-        } else {
-            for (int i = 0; i < size; i++) {
-                puff[i] = (T) elementData[i];
-            }
+            puff = (T[]) new Object[size];
+        }
+        for (int i = 0; i < size; i++) {
+            puff[i] = (T) elementData[i];
         }
         return puff;
     }
@@ -258,10 +260,8 @@ public class MyCollection<E> implements Collection<E> {
                 } else {
                     throw new IllegalStateException();
                 }
-
-
             } catch (ArrayIndexOutOfBoundsException | IllegalStateException e) {
-                System.out.println(new IllegalStateException());
+                throw new IllegalStateException();
             }
         }
     }
